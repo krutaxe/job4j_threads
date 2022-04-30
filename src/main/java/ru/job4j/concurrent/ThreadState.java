@@ -13,11 +13,12 @@ public class ThreadState {
         first.start();
         second.start();
 
-        while (first.getState() == Thread.State.RUNNABLE
-                || second.getState() == Thread.State.RUNNABLE) {
+        while (first.getState() != Thread.State.RUNNABLE
+                || second.getState() != Thread.State.RUNNABLE) {
             System.out.println(first.getName());
             System.out.println(second.getName());
         }
+
         System.out.println("Работа нитей first и second завершина");
     }
 }
