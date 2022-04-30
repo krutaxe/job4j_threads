@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d34bbc48-2fe2-435f-8aee-457a26df78ac" name="Changes" comment="1. Запуск нити. Thread#start() [#1016 #295475]">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/job4j/concurrent/ConcurrentOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/job4j/concurrent/ConcurrentOutput.java" afterDir="false" />
+    <list default="true" id="d34bbc48-2fe2-435f-8aee-457a26df78ac" name="Changes" comment="3. Прерывание нити [#1019]">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/job4j/concurrent/ConsoleProgress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/job4j/concurrent/ConsoleProgress.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,16 +36,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/projects/job4j_threads/checkstyle.xml",
-    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/projects/job4j_threads/checkstyle.xml&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ConcurrentOutput" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.job4j.concurrent.ConcurrentOutput" />
@@ -86,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651322542690</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="3. Прерывание нити [#1019]">
+      <created>1651331083734</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1651331083734</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,6 +114,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="test" />
     <MESSAGE value="1. Запуск нити. Thread#start() [#1016 #295475]" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. Запуск нити. Thread#start() [#1016 #295475]" />
+    <MESSAGE value="3. Прерывание нити [#1019]" />
+    <option name="LAST_COMMIT_MESSAGE" value="3. Прерывание нити [#1019]" />
   </component>
 </project>
