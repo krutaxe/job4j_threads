@@ -1,8 +1,6 @@
 package ru.job4j.linked;
 
-import java.util.LinkedList;
-
-public class Node<T> {
+public final class Node<T> {
     private final Node<T> next;
     private final T value;
 
