@@ -26,9 +26,7 @@ public class CountBarrier {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                return;
             }
-            count();
         }
     }
 
