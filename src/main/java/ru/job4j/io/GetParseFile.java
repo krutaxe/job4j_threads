@@ -16,7 +16,7 @@ public final class GetParseFile {
                 new FileInputStream(file))) {
             int data;
             while ((data = i.read()) != -1) {
-                if (filter.test((char)data)) {
+                if (filter.test((char) data)) {
                     output.append(data);
                 }
             }
@@ -24,13 +24,12 @@ public final class GetParseFile {
         return output.toString();
     }
 
-
     public String getContent() throws IOException {
         return getContent(a -> true);
     }
 
     public String getContentWithoutUnicode() throws IOException {
-        return getContent(a -> a < 0x80 );
+        return getContent(a -> a < 0x80);
     }
 
 }

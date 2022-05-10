@@ -10,6 +10,7 @@ import java.util.Map;
 public class UserStorage {
     @GuardedBy("this")
     private static final Map<Integer, User> STORES = new HashMap<>();
+
     public synchronized boolean add(User user) {
         return STORES.putIfAbsent(user.getId(), user) == null;
     }

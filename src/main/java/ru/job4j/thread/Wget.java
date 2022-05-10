@@ -10,8 +10,6 @@ public class Wget implements Runnable {
 
     private final String fileName;
 
-    public static long downloadSpeed;
-
     public Wget(String url, int speed, String fileName) {
         this.url = url;
         this.speed = speed;
