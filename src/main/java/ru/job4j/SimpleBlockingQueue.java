@@ -10,7 +10,7 @@ import java.util.Queue;
 public class SimpleBlockingQueue<T> {
 
     @GuardedBy("this")
-    private volatile Queue<T> queue = new LinkedList<>();
+    private final  Queue<T> queue = new LinkedList<>();
     private final int limit;
 
     public SimpleBlockingQueue(int limit) {
