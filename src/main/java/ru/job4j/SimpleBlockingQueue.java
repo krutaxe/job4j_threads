@@ -12,6 +12,7 @@ public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private volatile Queue<T> queue = new LinkedList<>();
     private final int limit;
+
     public SimpleBlockingQueue(int limit) {
         this.limit = limit;
     }
@@ -38,7 +39,6 @@ public class SimpleBlockingQueue<T> {
 
         SimpleBlockingQueue<Integer> simpleBlockingQueue = new SimpleBlockingQueue<>(5);
 
-
         Thread producer = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -51,7 +51,6 @@ public class SimpleBlockingQueue<T> {
                 }
             }
         });
-
 
         Thread consumer = new Thread(new Runnable() {
             @Override
