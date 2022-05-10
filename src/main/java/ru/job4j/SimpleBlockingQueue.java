@@ -10,50 +10,44 @@ import java.util.Queue;
 public class SimpleBlockingQueue<T> {
 
     @GuardedBy("this")
-    private Queue<T> queue = new LinkedList<>();
-    private final int limit = 5;
-    private final Object lock = new Object();
-
-    public void offer(T value) {
-        synchronized (lock) {
-            while (queue.size() == limit) {
-                try {
-                    lock.wait();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            queue.offer(value);
-            lock.notify();
-        }
+    private volatile Queue<T> queue = new LinkedList<>();
+    private final int limit;
+    public SimpleBlockingQueue(int limit) {
+        this.limit = limit;
     }
 
-    public T poll() {
-        T result;
-        synchronized (lock) {
-            while (queue.size() == 0) {
-                try {
-                    lock.wait();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            result = queue.poll();
-            lock.notify();
+    public synchronized void offer(T value) throws InterruptedException {
+        while (queue.size() == limit) {
+            this.wait();
         }
+        queue.offer(value);
+        this.notify();
+    }
+
+    public synchronized T poll() throws InterruptedException {
+        T result;
+        while (queue.size() == 0) {
+            this.wait();
+        }
+        result = queue.poll();
+        this.notify();
         return result;
     }
 
     public static void main(String[] args) throws InterruptedException {
 
-        SimpleBlockingQueue<Integer> simpleBlockingQueue = new SimpleBlockingQueue<>();
+        SimpleBlockingQueue<Integer> simpleBlockingQueue = new SimpleBlockingQueue<>(5);
 
 
         Thread producer = new Thread(new Runnable() {
             @Override
             public void run() {
                 for (int i = 1; i < 11; i++) {
-                    simpleBlockingQueue.offer(i);
+                    try {
+                        simpleBlockingQueue.offer(i);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });
@@ -63,7 +57,11 @@ public class SimpleBlockingQueue<T> {
             @Override
             public void run() {
                 for (int i = 0; i < 10; i++) {
-                    simpleBlockingQueue.poll();
+                    try {
+                        simpleBlockingQueue.poll();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });

@@ -11,15 +11,27 @@ public class SimpleBlockingQueueTest {
 
     @Test
     public void queue() throws InterruptedException {
-        SimpleBlockingQueue<Integer> sq = new SimpleBlockingQueue<>();
+        SimpleBlockingQueue<Integer> sq = new SimpleBlockingQueue<>(5);
         List<Integer> result = new ArrayList<>();
         List<Integer> expected = List.of(3, 2, 1);
         Thread producer = new Thread(new Runnable() {
             @Override
             public void run() {
-                sq.offer(3);
-                sq.offer(2);
-                sq.offer(1);
+                try {
+                    sq.offer(3);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    sq.offer(2);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    sq.offer(1);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -27,9 +39,21 @@ public class SimpleBlockingQueueTest {
         Thread consumer = new Thread(new Runnable() {
             @Override
             public void run() {
-              result.add(sq.poll());
-              result.add(sq.poll());
-              result.add(sq.poll());
+                try {
+                    result.add(sq.poll());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    result.add(sq.poll());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    result.add(sq.poll());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
