@@ -17,6 +17,10 @@ public class SimpleBlockingQueue<T> {
         this.limit = limit;
     }
 
+    public Queue<T> getQueue() {
+        return queue;
+    }
+
     public synchronized void offer(T value) throws InterruptedException {
         while (queue.size() == limit) {
             this.wait();
