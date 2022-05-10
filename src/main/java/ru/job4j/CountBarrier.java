@@ -24,7 +24,7 @@ public class CountBarrier {
                 try {
                     monitor.wait();
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -68,7 +68,6 @@ public class CountBarrier {
         second.start();
 
         Thread.sleep(500);
-
 
         System.out.println("поток 1 - " + first.getState());
         System.out.println("поток 2 - " + second.getState());
