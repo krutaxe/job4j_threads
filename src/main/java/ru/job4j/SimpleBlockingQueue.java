@@ -17,10 +17,6 @@ public class SimpleBlockingQueue<T> {
         this.limit = limit;
     }
 
-//    public Queue<T> getQueue() {
-//        return queue;
-//    }
-
     public synchronized boolean isEmpty() {
         return queue.isEmpty();
     }

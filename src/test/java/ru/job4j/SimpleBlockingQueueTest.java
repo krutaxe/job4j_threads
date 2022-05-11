@@ -87,6 +87,7 @@ public class SimpleBlockingQueueTest {
                 }
         );
         producer.start();
+
         Thread consumer = new Thread(
                 () -> {
                     while (!queue.isEmpty() || !Thread.currentThread().isInterrupted()) {
