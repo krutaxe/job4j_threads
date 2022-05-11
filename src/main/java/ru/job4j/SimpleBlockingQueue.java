@@ -17,8 +17,12 @@ public class SimpleBlockingQueue<T> {
         this.limit = limit;
     }
 
-    public Queue<T> getQueue() {
-        return queue;
+//    public Queue<T> getQueue() {
+//        return queue;
+//    }
+
+    public synchronized boolean isEmpty() {
+        return queue.isEmpty();
     }
 
     public synchronized void offer(T value) throws InterruptedException {
