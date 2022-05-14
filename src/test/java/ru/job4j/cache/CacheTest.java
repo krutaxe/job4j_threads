@@ -38,4 +38,11 @@ public class CacheTest {
         assertEquals(3, cache.getMemory().get(2).getVersion());
     }
 
+    @Test(expected = OptimisticException.class)
+    public void whenUpdateException() {
+        Cache cache = new Cache();
+        cache.add(new Base(1, 1));
+        cache.update(new Base(1, 1));
+        cache.update(new Base(1, 1));
+    }
 }
