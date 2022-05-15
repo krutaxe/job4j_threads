@@ -4,6 +4,8 @@ import ru.job4j.SimpleBlockingQueue;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ThreadPool {
     private final int size = Runtime.getRuntime().availableProcessors();
@@ -11,7 +13,7 @@ public class ThreadPool {
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>(size);
 
     public ThreadPool(SimpleBlockingQueue<Runnable> tasks) throws InterruptedException {
-        for (int i = 1; i <= size; i++) {
+        for (int i = 0; i <= size; i++) {
             threads.add(new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -24,9 +26,8 @@ public class ThreadPool {
                     }
                 }
             }));
-            threads.get(i - 1).start();
+            threads.get(i).start();
         }
-        shutdown();
     }
 
     public void work(Runnable job) throws InterruptedException {
@@ -57,5 +58,7 @@ public class ThreadPool {
         }
 
         new ThreadPool(tasks);
+
+        ExecutorService pool = Executors.newFixedThreadPool(size);
     }
 }
