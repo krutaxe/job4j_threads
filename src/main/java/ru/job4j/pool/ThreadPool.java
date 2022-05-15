@@ -58,7 +58,5 @@ public class ThreadPool {
         }
 
         new ThreadPool(tasks);
-
-        ExecutorService pool = Executors.newFixedThreadPool(size);
     }
 }
