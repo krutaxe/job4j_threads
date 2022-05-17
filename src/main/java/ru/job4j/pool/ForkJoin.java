@@ -43,13 +43,5 @@ public class ForkJoin<T> extends RecursiveTask<Integer> {
         leftArray.fork();
         rightArray.fork();
         return Math.max(leftArray.join(), rightArray.join());
-
-    }
-
-    public static void main(String[] args) {
-        int[] array = new int[100];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = i * 3;
-        }
     }
 }
