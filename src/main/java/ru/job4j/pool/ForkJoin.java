@@ -3,13 +3,13 @@ package ru.job4j.pool;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-public class ForkJoin extends RecursiveTask<Integer> {
-    private final int[] array;
+public class ForkJoin<T> extends RecursiveTask<Integer> {
+    private final T[] array;
     private final int left;
     private final int right;
-    private final int element;
+    private final T element;
 
-    public ForkJoin(int[] array, int left, int right, int element) {
+    public ForkJoin(T[] array, int left, int right, T element) {
         this.array = array;
         this.left = left;
         this.right = right;
@@ -21,29 +21,29 @@ public class ForkJoin extends RecursiveTask<Integer> {
         for (int i = left; i < right; i++) {
             if (array[i] == element) {
                 rsl = i;
+                break;
             }
         }
         return rsl;
     }
 
-    public static int findIndexElement(int[] array, int element) {
-        ForkJoin task = new ForkJoin(array, 0, array.length, element);
+    public static <T> Integer findIndexElement(T[] array, T element) {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        return forkJoinPool.invoke(task);
+        return forkJoinPool.invoke(new ForkJoin<>(array, 0, array.length, element));
     }
 
     @Override
     protected Integer compute() {
         if (right - left <= 10) {
             return findIndex();
-        } else {
-            int mid = (left + right) / 2;
-            RecursiveTask<Integer> leftArray = new ForkJoin(array, left, mid, element);
-            RecursiveTask<Integer> rightArray = new ForkJoin(array, mid, right, element);
-            leftArray.fork();
-            rightArray.fork();
-            return Math.max(leftArray.join(), rightArray.join());
         }
+        int mid = (left + right) / 2;
+        ForkJoin<T> leftArray = new ForkJoin<>(array, left, mid, element);
+        ForkJoin<T> rightArray = new ForkJoin<>(array, mid, right, element);
+        leftArray.fork();
+        rightArray.fork();
+        return Math.max(leftArray.join(), rightArray.join());
+
     }
 
     public static void main(String[] args) {
@@ -51,6 +51,5 @@ public class ForkJoin extends RecursiveTask<Integer> {
         for (int i = 0; i < array.length; i++) {
             array[i] = i * 3;
         }
-        System.out.println(findIndexElement(array, 12));
     }
 }
