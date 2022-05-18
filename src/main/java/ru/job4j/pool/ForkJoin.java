@@ -19,7 +19,7 @@ public class ForkJoin<T> extends RecursiveTask<Integer> {
     private int findIndex() {
         int rsl = -1;
         for (int i = left; i < right; i++) {
-            if (array[i] == element) {
+            if (array[i].equals(element)) {
                 rsl = i;
                 break;
             }
